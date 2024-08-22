@@ -4,6 +4,7 @@ import com.cydeo.util.FakeStoreTestBase;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class P01_SimpleGetRequest extends FakeStoreTestBase {
@@ -49,10 +50,37 @@ public class P01_SimpleGetRequest extends FakeStoreTestBase {
 
         Response response = RestAssured.given().log().uri()
                 .accept(ContentType.JSON)
-                //.baseUri("https://api.escuelajss.co")
+                //.baseUri("https://api.escuelajs.co")
                 .when().get("/api/v1/products");
 
-        response.prettyPrint();
+        // response.prettyPrint();
+
+
+        System.out.println("-------- STATUS CODE  --------");
+        int statusCode = response.statusCode();
+        // no difference response.getStatusCode();
+        System.out.println(statusCode);
+        Assertions.assertEquals(200,statusCode);
+
+        System.out.println("-------- CONTENT TYPE --------");
+        String contentType = response.contentType();
+        System.out.println("contentType = " + contentType);
+        Assertions.assertEquals("application/json; charset=utf-8",contentType);
+
+
+        System.out.println("-------- HEADERS --------");
+        System.out.println("response.getHeaders() = " + response.getHeaders());
+        System.out.println("response.headers() = " + response.headers());
+
+        System.out.println("-------- CONTENT-LENGTH  --------");
+        System.out.println("response.getHeader(\"Content-Length\") = " + response.getHeader("Content-Length"));
+        System.out.println("response.header(\"Content-Lenght\") = " + response.header("Content-Length"));
+
+        System.out.println("-------- DATE --------");
+        boolean hasDate = response.getHeaders().hasHeaderWithName("Date");
+        Assertions.assertTrue(hasDate);
+
+
     }
 
 }
