@@ -26,6 +26,18 @@ public class P01_SimpleGetRequest {
 
      */
 
+    /*
+     * 1- Given accept type is Json
+     * 2- When user sends GET request to api/v1/products
+     * 3- Verify followings
+     * - Status code should be 200
+     * - Content Type is application/json; charset=utf-8
+     * - Print response
+     * - Print content-length header
+     * - Headers
+     * - Verify response has Date
+     */
+
 
 
 
