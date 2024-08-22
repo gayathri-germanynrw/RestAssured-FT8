@@ -90,7 +90,8 @@ public class P03_QueryParam extends FakeStoreTestBase {
         }
 
         // Get me all product title where product price more than 1000
-
+        List<String> allProductOver1000 = jp.getList("findAll {it.price>1000}.title");
+        System.out.println("allProductOver1000 = " + allProductOver1000);
 
     }
 }
