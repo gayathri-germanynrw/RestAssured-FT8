@@ -1,8 +1,12 @@
 package com.cydeo.tests;
 
+import com.cydeo.util.FakeStoreTestBase;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
-public class P01_SimpleGetRequest {
+public class P01_SimpleGetRequest extends FakeStoreTestBase {
 
 
     /*
@@ -35,14 +39,20 @@ public class P01_SimpleGetRequest {
      * - Status code should be 200
      * - Content Type is application/json; charset=utf-8
      * - Print response
-     * - Print content-length header
      * - Headers
+     * - Print content-length header
      * - Verify response has Date
      */
 
     @Test
    public void task1() {
 
+        Response response = RestAssured.given().log().uri()
+                .accept(ContentType.JSON)
+                //.baseUri("https://api.escuelajss.co")
+                .when().get("/api/v1/products");
 
+        response.prettyPrint();
     }
+
 }
