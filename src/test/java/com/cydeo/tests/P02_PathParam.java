@@ -1,5 +1,6 @@
 package com.cydeo.tests;
 
+import com.cydeo.util.APIUtil;
 import com.cydeo.util.FakeStoreTestBase;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -119,5 +120,37 @@ public class P02_PathParam extends FakeStoreTestBase {
         //     * - Category name is "Electronics"
         Assertions.assertEquals("Electronics",jp.getString("category.name"));
 
+    }
+
+    @Test
+    public void task3() {
+        Response response = APIUtil.getResponse("products", 144);
+
+        // Init JSONPATH OBJECT
+        JsonPath jp = response.jsonPath();
+
+        //     * - Status code should be 200
+        Assertions.assertEquals(200,response.statusCode());
+
+        //     * - Content Type is application/json; charset=utf-8
+        Assertions.assertEquals(ContentType.JSON.withCharset("utf-8"),response.contentType());
+
+        //     * - id is 144
+        Assertions.assertEquals(144,jp.getInt("id"));
+
+        //     * - Title is "Laptop"
+        Assertions.assertEquals("Laptop",jp.getString("title"));
+
+        //     * - Category name is "Electronics"
+        Assertions.assertEquals("Electronics",jp.getString("category.name"));
+
+    }
+
+    @Test
+    public void task4() {
+
+        Response response = APIUtil.getResponse("categories", 2);
+
+        response.prettyPrint();
     }
 }
