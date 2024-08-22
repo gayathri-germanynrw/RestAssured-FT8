@@ -1,5 +1,7 @@
 package com.cydeo.tests;
 
+import org.junit.jupiter.api.Test;
+
 public class P01_SimpleGetRequest {
 
 
@@ -38,8 +40,9 @@ public class P01_SimpleGetRequest {
      * - Verify response has Date
      */
 
+    @Test
+   public void task1() {
 
 
-
-
+    }
 }
