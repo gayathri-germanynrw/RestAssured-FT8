@@ -1,8 +1,13 @@
 package com.cydeo.tests;
 
+import com.cydeo.util.FakeStoreTestBase;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class P02_PathParam {
+public class P02_PathParam extends FakeStoreTestBase {
 
     /*
     OBJECT
@@ -56,6 +61,30 @@ public class P02_PathParam {
 
     @Test
     public void task1() {
+
+        Response response = RestAssured.given().accept(ContentType.JSON)
+                .pathParam("id", 144)
+                .when().get("/api/v1/products/{id}");
+
+        response.prettyPrint();
+
+
+        //     * - Status code should be 200
+        Assertions.assertEquals(200,response.statusCode());
+
+        //     * - Content Type is application/json; charset=utf-8
+        Assertions.assertEquals(ContentType.JSON.withCharset("utf-8"),response.contentType());
+
+        //     * - id is 144
+        int id = response.path("id");
+        System.out.println("id = " + id);
+        Assertions.assertEquals(144,id);
+
+        //     * - Title is "Laptop"
+        Assertions.assertEquals("Laptop",response.path("title"));
+
+        //     * - Category name is "Electronics"
+        Assertions.assertEquals("Electronics",response.path("category.name"));
 
     }
 }
