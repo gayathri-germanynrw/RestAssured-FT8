@@ -104,6 +104,7 @@ public class P04_DeserializationPOJO extends FormulaTestBase {
         List<StatusPOJO> statusList = statusTable.getStatusList();
 
         for (StatusPOJO eachStatus : statusList) {
+            System.out.println("eachStatus.getStatusId() = " + eachStatus.getStatusId());
             Assertions.assertNotNull(eachStatus.getStatusId());
         }
 
