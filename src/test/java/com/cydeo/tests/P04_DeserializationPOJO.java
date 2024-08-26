@@ -7,7 +7,10 @@ import com.cydeo.util.FormulaTestBase;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 public class P04_DeserializationPOJO extends FormulaTestBase {
 
@@ -87,5 +90,22 @@ public class P04_DeserializationPOJO extends FormulaTestBase {
         // GET FIRST STATUS
         StatusPOJO statusPOJO = jp.getObject("MRData.StatusTable.Status[0]", StatusPOJO.class);
         System.out.println("statusPOJO = " + statusPOJO);
+
+
+        //        - And total is 137
+        Assertions.assertEquals("137",mrData.getTotal());
+        Assertions.assertEquals("137",jp.getString("MRData.total"));
+
+        //        - And limit is 30
+        Assertions.assertEquals("30",mrData.getLimit());
+
+        //        - And each status has statusId
+
+        List<StatusPOJO> statusList = statusTable.getStatusList();
+
+        for (StatusPOJO eachStatus : statusList) {
+            Assertions.assertNotNull(eachStatus.getStatusId());
+        }
+
     }
 }
