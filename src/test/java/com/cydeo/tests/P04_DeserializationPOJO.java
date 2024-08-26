@@ -1,8 +1,12 @@
 package com.cydeo.tests;
 
+import com.cydeo.util.FormulaTestBase;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.Test;
 
-public class P04_DeserializationPOJO {
+public class P04_DeserializationPOJO extends FormulaTestBase {
 
     /*
         - ERGAST API ( Formula API )
@@ -60,6 +64,12 @@ public class P04_DeserializationPOJO {
 
     @Test
     public void task1() {
+
+        JsonPath jp = RestAssured.when().get("/status.json")
+                .then().statusCode(200)
+                .contentType(ContentType.JSON.withCharset("utf-8"))
+                .extract().jsonPath();
+
 
     }
 }
