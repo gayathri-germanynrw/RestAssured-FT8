@@ -1,5 +1,6 @@
 package com.cydeo.tests;
 
+import com.cydeo.pojo.MRDataStatus;
 import com.cydeo.util.FormulaTestBase;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -27,7 +28,7 @@ public class P04_DeserializationPOJO extends FormulaTestBase {
       let employee={
                         "name":"Mike",
                         "age":34,
-                        "gender":"Male"
+                        "gender":"Male",
                     }
 
       public class Employee{
@@ -69,6 +70,17 @@ public class P04_DeserializationPOJO extends FormulaTestBase {
                 .then().statusCode(200)
                 .contentType(ContentType.JSON.withCharset("utf-8"))
                 .extract().jsonPath();
+
+        // Deserialization
+        // GET ALL RESPONSE
+        MRDataStatus mrData = jp.getObject("MRData", MRDataStatus.class);
+
+
+        // GET ONLY STATUSTABLE
+
+
+
+        // GET FIRST STATUS
 
 
     }
