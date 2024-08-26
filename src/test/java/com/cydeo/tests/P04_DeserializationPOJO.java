@@ -1,6 +1,8 @@
 package com.cydeo.tests;
 
 import com.cydeo.pojo.MRDataStatus;
+import com.cydeo.pojo.StatusPOJO;
+import com.cydeo.pojo.StatusTable;
 import com.cydeo.util.FormulaTestBase;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -74,15 +76,16 @@ public class P04_DeserializationPOJO extends FormulaTestBase {
         // Deserialization
         // GET ALL RESPONSE
         MRDataStatus mrData = jp.getObject("MRData", MRDataStatus.class);
-        System.out.println("mrData = " + mrData);
+        // System.out.println("mrData = " + mrData);
+        System.out.println("mrData.getStatusTable().getStatusList().get(0) = " + mrData.getStatusTable().getStatusList().get(0));
 
 
         // GET ONLY STATUSTABLE
-
-
+        StatusTable statusTable = jp.getObject("MRData.StatusTable", StatusTable.class);
+        // System.out.println("statusTable = " + statusTable);
 
         // GET FIRST STATUS
-
-
+        StatusPOJO statusPOJO = jp.getObject("MRData.StatusTable.Status[0]", StatusPOJO.class);
+        System.out.println("statusPOJO = " + statusPOJO);
     }
 }
