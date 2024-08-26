@@ -65,7 +65,7 @@ public class P02_PathParam extends FakeStoreTestBase {
     public void task1() {
 
         Response response = RestAssured.given().accept(ContentType.JSON)
-                .pathParam("id", 144)
+                .pathParam("id", 103)
                 .when().get("/api/v1/products/{id}");
 
         response.prettyPrint();
@@ -80,7 +80,7 @@ public class P02_PathParam extends FakeStoreTestBase {
         //     * - id is 144
         int id = response.path("id");
         System.out.println("id = " + id);
-        Assertions.assertEquals(144,id);
+        Assertions.assertEquals(103,id);
 
         //     * - Title is "Laptop"
         Assertions.assertEquals("Laptop",response.path("title"));
