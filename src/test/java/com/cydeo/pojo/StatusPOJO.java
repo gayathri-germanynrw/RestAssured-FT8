@@ -1,9 +1,12 @@
 package com.cydeo.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@ToString
+@Getter
+@Setter
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StatusPOJO {
 

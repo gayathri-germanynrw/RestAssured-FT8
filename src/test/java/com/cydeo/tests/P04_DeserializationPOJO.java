@@ -74,6 +74,7 @@ public class P04_DeserializationPOJO extends FormulaTestBase {
         // Deserialization
         // GET ALL RESPONSE
         MRDataStatus mrData = jp.getObject("MRData", MRDataStatus.class);
+        System.out.println("mrData = " + mrData);
 
 
         // GET ONLY STATUSTABLE
